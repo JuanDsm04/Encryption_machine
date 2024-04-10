@@ -19,6 +19,26 @@ class Machine:
             frase_codificada += palabra_codificada + " "
 
         return frase_codificada.strip()
+    
+    def encontrar_llave(self, value):
+        for llave, val in self.diccionario.items():
+            if val == value:
+                return llave
+        
+    def decodificar_frase(self, codigo):
+        palabras = codigo.split()
+        codigo_decodificado = ""
+
+        for palabra in palabras:
+            palabra_decodificada = ""
+            for caracter in palabra:
+                if caracter in self.diccionario.values():
+                    palabra_decodificada += machine.encontrar_llave(caracter)
+                else:
+                    palabra_decodificada += caracter
+            codigo_decodificado += palabra_decodificada + " "
+        return codigo_decodificado.strip()
+
 
 machine = Machine()
 machine.agregar_letra('A', '@')
@@ -83,3 +103,5 @@ machine.agregar_letra('z', '±')
 frase_usuario = input("Ingrese una frase: ")
 frase_codificada = machine.codificar_frase(frase_usuario)
 print("Frase convertida:", frase_codificada)
+print('Frase a encontrar: '+frase_codificada)
+print('Frase decodificada: '+machine.decodificar_frase(frase_codificada))
