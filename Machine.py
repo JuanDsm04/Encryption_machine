@@ -1,107 +1,101 @@
 class Machine:
     def __init__(self):
-        self.diccionario = {}
+        self.hashmap = {}
+        self.set_keys()
 
-    def agregar_letra(self, letra, caracter):
-        self.diccionario[letra] = caracter
+    def add_char(self, character, caracter):
+        self.hashmap[character] = caracter
 
-    def codificar_frase(self, frase):
-        palabras = frase.split()
-        frase_codificada = ""
+    def encrypt_phrase(self, phrase):
+        words = phrase.split()
+        encrypted_phrase = ""
 
-        for palabra in palabras:
-            palabra_codificada = ""
-            for letra in palabra:
-                if letra in self.diccionario:
-                    palabra_codificada += self.diccionario[letra]
+        for word in words:
+            word_encrypted = ""
+            for character in word:
+                if character in self.hashmap:
+                    word_encrypted += self.hashmap[character]
                 else:
-                    palabra_codificada += letra
-            frase_codificada += palabra_codificada + " "
+                    word_encrypted += character
+            encrypted_phrase += word_encrypted + " "
 
-        return frase_codificada.strip()
+        return encrypted_phrase.strip()
     
-    def encontrar_llave(self, value):
-        for llave, val in self.diccionario.items():
+    def find_key(self, value):
+        for key, val in self.hashmap.items():
             if val == value:
-                return llave
+                return key
         
-    def decodificar_frase(self, codigo):
-        palabras = codigo.split()
-        codigo_decodificado = ""
+    def reveal_phrase(self, code):
+        words = code.split()
+        code_decodificado = ""
 
-        for palabra in palabras:
-            palabra_decodificada = ""
-            for caracter in palabra:
-                if caracter in self.diccionario.values():
-                    palabra_decodificada += machine.encontrar_llave(caracter)
+        for word in words:
+            word_deencrypted = ""
+            for caracter in word:
+                if caracter in self.hashmap.values():
+                    word_deencrypted += self.find_key(caracter)
                 else:
-                    palabra_decodificada += caracter
-            codigo_decodificado += palabra_decodificada + " "
-        return codigo_decodificado.strip()
+                    word_deencrypted += caracter
+            code_decodificado += word_deencrypted + " "
+        return code_decodificado.strip()
 
-
-machine = Machine()
-machine.agregar_letra('A', '@')
-machine.agregar_letra('a', '#')
-machine.agregar_letra('B', '$')
-machine.agregar_letra('b', '%')
-machine.agregar_letra('C', '&')
-machine.agregar_letra('c', '*')
-machine.agregar_letra('Ch', '+')
-machine.agregar_letra('ch', '/')
-machine.agregar_letra('D', '=')
-machine.agregar_letra('d', 'ö')
-machine.agregar_letra('E', '!')
-machine.agregar_letra('e', ';')
-machine.agregar_letra('F', ':')
-machine.agregar_letra('f', ',')
-machine.agregar_letra('G', '.')
-machine.agregar_letra('g', '<')
-machine.agregar_letra('H', '>')
-machine.agregar_letra('h', '(')
-machine.agregar_letra('I', ')')
-machine.agregar_letra('i', '[')
-machine.agregar_letra('J', ']')
-machine.agregar_letra('j', '{')
-machine.agregar_letra('K', '}')
-machine.agregar_letra('k', '|')
-machine.agregar_letra('L', '^')
-machine.agregar_letra('l', '"')
-machine.agregar_letra('Ll', "'")
-machine.agregar_letra('ll', '~')
-machine.agregar_letra('M', '_')
-machine.agregar_letra('m', '-')
-machine.agregar_letra('N', '×')
-machine.agregar_letra('n', '¿')
-machine.agregar_letra('Ñ', '¡')
-machine.agregar_letra('ñ', '?')
-machine.agregar_letra('O', '»')
-machine.agregar_letra('o', '«')
-machine.agregar_letra('P', '£')
-machine.agregar_letra('p', '¥')
-machine.agregar_letra('Q', '¢')
-machine.agregar_letra('q', '­­­÷')
-machine.agregar_letra('R', '♥')
-machine.agregar_letra('r', 'æ')
-machine.agregar_letra('S', 'Ø')
-machine.agregar_letra('s', '¶')
-machine.agregar_letra('T', '↑')
-machine.agregar_letra('t', '♦')
-machine.agregar_letra('U', '♀')
-machine.agregar_letra('u', '♫')
-machine.agregar_letra('V', '♪')
-machine.agregar_letra('v', '▲')
-machine.agregar_letra('W', '►')
-machine.agregar_letra('w', '◄')
-machine.agregar_letra('X', '♣')
-machine.agregar_letra('x', '→')
-machine.agregar_letra('Y', '↕')
-machine.agregar_letra('y', '◘')
-machine.agregar_letra('Z', 'ƒ')
-machine.agregar_letra('z', '±')
-
-frase_usuario = input("Ingrese una frase: ")
-frase_codificada = machine.codificar_frase(frase_usuario)
-print("Frase convertida:", frase_codificada)
-print('Frase a encontrar: '+frase_codificada)
-print('Frase decodificada: '+machine.decodificar_frase(frase_codificada))
+    def set_keys(self):
+        self.add_char('A', '@')
+        self.add_char('a', '#')
+        self.add_char('B', '$')
+        self.add_char('b', '%')
+        self.add_char('C', '&')
+        self.add_char('c', '*')
+        self.add_char('Ch', '+')
+        self.add_char('ch', '/')
+        self.add_char('D', '=')
+        self.add_char('d', 'ö')
+        self.add_char('E', '!')
+        self.add_char('e', ';')
+        self.add_char('F', ':')
+        self.add_char('f', ',')
+        self.add_char('G', '.')
+        self.add_char('g', '<')
+        self.add_char('H', '>')
+        self.add_char('h', '(')
+        self.add_char('I', ')')
+        self.add_char('i', '[')
+        self.add_char('J', ']')
+        self.add_char('j', '{')
+        self.add_char('K', '}')
+        self.add_char('k', '|')
+        self.add_char('L', '^')
+        self.add_char('l', '"')
+        self.add_char('Ll', "'")
+        self.add_char('ll', '~')
+        self.add_char('M', '_')
+        self.add_char('m', '-')
+        self.add_char('N', '×')
+        self.add_char('n', '¿')
+        self.add_char('Ñ', '¡')
+        self.add_char('ñ', '?')
+        self.add_char('O', '»')
+        self.add_char('o', '«')
+        self.add_char('P', '£')
+        self.add_char('p', '¥')
+        self.add_char('Q', '¢')
+        self.add_char('q', '­­­÷')
+        self.add_char('R', '♥')
+        self.add_char('r', 'æ')
+        self.add_char('S', 'Ø')
+        self.add_char('s', '¶')
+        self.add_char('T', '↑')
+        self.add_char('t', '♦')
+        self.add_char('U', '♀')
+        self.add_char('u', '♫')
+        self.add_char('V', '♪')
+        self.add_char('v', '▲')
+        self.add_char('W', '►')
+        self.add_char('w', '◄')
+        self.add_char('X', '♣')
+        self.add_char('x', '→')
+        self.add_char('Y', '↕')
+        self.add_char('y', '◘')
+        self.add_char('Z', 'ƒ')
+        self.add_char('z', '±')

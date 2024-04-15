@@ -1,5 +1,6 @@
 import customtkinter as ctk
 import tkinter as tk
+from Machine import Machine
 
 # Configuración global de la apariencia
 ctk.set_appearance_mode("dark")
@@ -13,6 +14,7 @@ class App(ctk.CTk):
     def __init__(self):
         super().__init__()
 
+        self.inner_machine = Machine()
         self.geometry("1000x600")
         self.title("Codificador")
         self.resizable(False, False)
@@ -43,6 +45,7 @@ class App(ctk.CTk):
 
         self.button = ctk.CTkButton(self.top_frame, text="Procesar", font=("Roboto", 16))
         self.button.pack(side="right", padx=(0, 30), pady=(0, 30), expand=False)
+        self.button.bind("<Button-1>", self.on_click)
 
         self.subtitle_label = ctk.CTkLabel(self.bottom_frame, text="Resultado:", font=("Roboto", 24))
         self.subtitle_label.pack(pady=30, padx=10, expand=False)
@@ -54,8 +57,19 @@ class App(ctk.CTk):
     def show_result(self, text):
         var_result = tk.StringVar()
         var_result.set(text)
-
         self.result.configure(textvariable=var_result)
+
+    # Añade interactividad al botón
+    def on_click(self, event):
+        users_input = self.entry.get();
+
+        if self.option.get() == "Codificar":
+            encrypted_phrase = self.inner_machine.encrypt_phrase(users_input)
+            self.show_result(encrypted_phrase)
+            
+        if self.option.get() == "Decodificar":
+            phrase = self.inner_machine.reveal_phrase(users_input)
+            self.show_result(phrase)
 
     # Corre la vista
     def run(self):
