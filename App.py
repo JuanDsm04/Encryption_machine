@@ -50,7 +50,7 @@ class App(ctk.CTk):
         self.subtitle_label = ctk.CTkLabel(self.bottom_frame, text="Resultado:", font=("Roboto", 24))
         self.subtitle_label.pack(pady=30, padx=10, expand=False)
 
-        self.result = ctk.CTkEntry(self.bottom_frame, state="readonly", textvariable=tk.StringVar(), font=("Roboto", 16), width=300)
+        self.result = ctk.CTkEntry(self.bottom_frame, state="readonly", textvariable=tk.StringVar(), font=("Roboto", 16), width=600)
         self.result.pack(pady=(0, 30), padx=10)
 
     # Muestra un texto en la parte de resultados
